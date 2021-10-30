@@ -1,0 +1,8 @@
+position_data <- read.csv2("csvs/positions.csv")
+skills        <- read.csv("csvs/language_skills.csv")
+text_blocks   <- read.csv("csvs/text_blocks.csv")
+contact_info  <- read.csv("csvs/contact_info.csv", skip = 1)
+publications <- read.csv2("csvs/publicaciones_2.csv")
+projects <- read.csv2("csvs/recent projects.csv")
+languages <- read.csv2("csvs/language.csv")
+dissemination <- read.csv2("csvs/dissemination.csv")

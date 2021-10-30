@@ -1,0 +1,216 @@
+---
+title: "Daniela de los Santos Acuña"
+author: Daniela de los Santos Acuña
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+#knit: pagedown::chrome_print
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+
+
+# Is the goal of this knit to build a document that is exported to PDF? If so
+# set this to true to have links turned into footnotes at the end of the
+# document
+PDF_EXPORT <- FALSE
+
+
+# A global (gasp) variable that holds all the links that were inserted for
+# placement at the end
+links <- c()
+
+# ======================================================================
+# Now we source two external scripts. One contains functions for building the
+# text output and the other loads up our data from either googlesheets or csvs
+
+# Functions for building sections from CSV data
+source('parsing_functions.R') 
+
+# Load data for CV/Resume
+source('gather_data.R')
+
+```
+
+```{css, echo=FALSE}
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 3rem;
+  --sidebar-background-color: #ffffff;
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.2in;
+}
+.aside {
+  padding-top: 0;
+}
+
+.aside > p:first-of-type {
+  margin-top: 0;
+}
+```
+
+Aside
+================================================================================
+![Daniela de los Santos](IMG_20190813_small.jpg){width=80%}
+
+
+Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> dlsantos.daniela@gmail.com
+- <i class="fa fa-github"></i> [danidlsa](https://github.com/danidlsa)
+- <i class="fa fa-phone"></i> +598 091377251
+- <i class="fa fa-linkedin"></i> [danidlsa](https://www.linkedin.com/in/danidlsa/)
+- <i class="fa fa-external-link"></i> [cvuy](https://exportcvuy.anii.org.uy/cv/?a0d91de8522f33cc1d4b5d35fd3be4d6)
+
+
+Languages {#languages}
+--------------------------------------------------------------------------------
+```{r, fig.height=4, warning=F}
+languages %>%
+  ggplot(aes(x=reorder(skill, -order), y=level, label=skill)) +
+  geom_bar(stat="identity", fill="#969696") +
+  coord_flip() +
+  geom_text(col="white", aes(x=skill, y=0.3), size=9, face="bold", hjust=0) +
+  theme(axis.title=element_blank(),
+        axis.text=element_blank(),
+        axis.ticks = element_blank())
+```
+
+
+Software {#software}
+--------------------------------------------------------------------------------
+```{r, fig.height=8, warning=F}
+skills %>%
+  ggplot(aes(x=reorder(skill, -order), y=level, label=skill)) +
+  geom_bar(stat="identity", fill="#969696") +
+  coord_flip() +
+  geom_text(col="white", aes(x=skill, y=0.3), size=9, face="bold", hjust=0) +
+  theme(axis.title=element_blank(),
+        axis.text=element_blank(),
+        axis.ticks = element_blank())
+```
+
+
+
+Main
+================================================================================
+
+Daniela de los Santos {#title}
+--------------------------------------------------------------------------------
+
+
+
+BSc in Sociology from the Catholic University of Uruguay, with experience in social research, 
+statistics, data processing and visualization, geospatial analysis, as well as scientific dissemination and teaching. My main area of interest is the application of data science on social research and public policy.
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('education')
+```
+
+Certifications and Courses {data-icon=id-card data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section_small('certs')
+```
+
+
+Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('cons')
+```
+  
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('research')
+```
+  
+
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('teach')
+```
+  
+
+
+
+Publications {data-icon=book}
+--------------------------------------------------------------------------------
+
+## Book Chapters {data-icon=file}
+```{r}
+publications %>% print_section('book_chapter')
+```
+
+## Journal Articles {data-icon=file}
+```{r}
+publications %>% print_section('ref_articles')
+```
+
+## Other Articles {data-icon=file}
+```{r}
+publications %>% print_section('other_articles')
+```
+
+## Reports and Working Papers {data-icon=file}
+```{r}
+publications %>% print_section('reports')
+```
+
+Recent Data-related Projects {data-icon=line-chart}
+--------------------------------------------------------------------------------
+```{r}
+projects %>% filter(in_resume=="VERDADERO") %>% print_section('project')
+```
+
+
+Achievements {data-icon=trophy}
+--------------------------------------------------------------------------------
+```{r}
+position_data %>% print_section('ach')
+```
+
+\newpage
+
+Dissemination Activities {data-icon=newspaper-o}
+--------------------------------------------------------------------------------
+
+## Presentations {data-icon=commenting-o}
+```{r}
+dissemination %>% print_section('presentation')
+```
+
+
+## Workshops {data-icon=users}
+```{r}
+dissemination %>% print_section('workshop')
+```
+
+
+## Press {data-icon=rss}
+```{r}
+dissemination %>% print_section('press')
+```
+
