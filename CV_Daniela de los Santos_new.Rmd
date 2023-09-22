@@ -1,0 +1,210 @@
+---
+title: "Daniela de los Santos Acuña"
+author: Daniela de los Santos Acuña
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+#knit: pagedown::chrome_print
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+
+
+# Is the goal of this knit to build a document that is exported to PDF? If so
+# set this to true to have links turned into footnotes at the end of the
+# document
+PDF_EXPORT <- FALSE
+
+
+# A global (gasp) variable that holds all the links that were inserted for
+# placement at the end
+links <- c()
+
+# ======================================================================
+# Now we source two external scripts. One contains functions for building the
+# text output and the other loads up our data from either googlesheets or csvs
+
+# Functions for building sections from CSV data
+source('parsing_functions.R') 
+
+# Load data for CV/Resume
+source('gather_data.R')
+
+```
+
+```{css, echo=FALSE}
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 3rem;
+  --sidebar-background-color: #ffffff;
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.2in;
+}
+.aside {
+  padding-top: 0;
+}
+
+.aside > p:first-of-type {
+  margin-top: 0;
+}
+```
+
+Aside
+================================================================================
+![Daniela de los Santos](IMG_20190813_small.jpg){width=80%}
+
+
+Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> dlsantos.daniela@gmail.com
+- <i class="fa fa-github"></i> [danidlsa](https://github.com/danidlsa)
+- <i class="fa fa-phone"></i> +598 99257423
+- <i class="fa fa-linkedin"></i> [danidlsa](https://www.linkedin.com/in/danidlsa/)
+- <i class="fa fa-external-link"></i> [cvuy](https://exportcvuy.anii.org.uy/cv/?a0d91de8522f33cc1d4b5d35fd3be4d6)
+- <i class="fa fa-google"></i> [Google Scholar](https://scholar.google.com.uy/citations?user=5WcqVgwAAAAJ&hl=es)
+
+
+Languages {#languages}
+-------------------------------------------------------------------------------- 
+    
+Spanish *(native)* \   
+English *(fluent)* \   
+Portuguese *(basic)* \   
+Catalan *(basic)* \ 
+
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+**Hard Skills**: Data analysis, Machine learning, Deep learning, Neural Networks, Natural Language Processing, Data Visualization, Statistical Modeling, Remote sensing, Spatial data analysis, Networks analysis, Cloud computing (AWS, Azure).
+
+**Programming languages and software**: Python (scikit-learn, PyTorch, TensorFlow, keras, nltk, numpy, matplotlib, seaborn, pandas), R, SQL, H2o.ai, Stata, PowerBI, Tableau, Git, ArcGIS/QGIS, Shiny.
+
+Main
+================================================================================
+
+Daniela de los Santos {#title}
+--------------------------------------------------------------------------------
+
+
+MSc in Data Science from the Barcelona School of Economics. BSc in Sociology from the Catholic University of Uruguay. 
+
+I have broad experience in data-driven social research and public policy analysis, machine and deep learning modeling, data processing and visualization, geospatial analysis, as well as scientific dissemination and teaching. My main areas of interest are the applications of data science tools in the design, implementation, and evaluation of public policy, aiming at the reduction of gender and social inequalities.
+
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('education')
+```
+
+Certifications and Courses {data-icon=id-card data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section_small('certs')
+```
+
+
+Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('cons')
+```
+  
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('research')
+```
+  
+
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('teach')
+```
+  
+
+
+
+Publications {data-icon=book}
+--------------------------------------------------------------------------------
+
+## Journal Articles {data-icon=file}
+```{r}
+publications %>% print_section('ref_articles')
+```
+
+## Book Chapters {data-icon=file}
+```{r}
+publications %>% print_section('book_chapter')
+```
+
+## Policy Briefs {data-icon=file}
+```{r}
+publications %>% print_section('policy')
+```
+
+## Other Articles {data-icon=file}
+```{r}
+publications %>% print_section('other_articles')
+```
+
+## Reports and Working Papers {data-icon=file}
+```{r}
+publications %>% print_section('reports')
+```
+
+Recent Data-related Projects {data-icon=line-chart}
+--------------------------------------------------------------------------------
+```{r}
+projects %>% filter(in_resume=="VERDADERO") %>% print_section('project')
+```
+
+
+Achievements {data-icon=trophy}
+--------------------------------------------------------------------------------
+```{r}
+position_data %>% print_section('ach')
+```
+
+\newpage
+
+Dissemination Activities {data-icon=newspaper-o}
+--------------------------------------------------------------------------------
+
+## Presentations {data-icon=commenting-o}
+```{r}
+dissemination %>% print_section('presentation')
+```
+
+
+## Workshops {data-icon=users}
+```{r}
+dissemination %>% print_section('workshop')
+```
+
+
+## Press {data-icon=rss}
+```{r}
+dissemination %>% print_section('press')
+```
+
